@@ -1,9 +1,8 @@
-<template lang="">
+<template>
     <div class="p-5 flex gap-6 w-full">
         <div class="w-48">
             <LitepieDatepicker
                 i18n="bg"
-                :keyup="goTo()"
                 placeholder="Дата"
                 as-single
                 :formatter="formatter"
@@ -19,7 +18,7 @@
             "
             as="button"
             type="button"
-            :href="route('test', dateValue)"
+            :href="route('third', dateValue)"
             class="flex justify-center items-center focus:shadow-outline rounded-full w-32 px-3 py-1 font-bold text-white focus:outline-none"
         >
             <div>go to</div>
@@ -39,35 +38,12 @@
             </svg>
         </Link>
     </div>
-
-    <ul class="p-5">
-        <li class="space-x-2 space-y-2" v-for="t in data" :key="t.id">
-            <input
-                type="text"
-                class="blockborder focus:shadow-outline appearance-none rounded border-gray-300 bg-white p-1 text-base placeholder-gray-400 shadow focus:border-black focus:shadow-md focus:outline-none"
-                :value="t.amount"
-            />
-            <input
-                type="text"
-                class="blockborder focus:shadow-outline appearance-none rounded border-gray-300 bg-white p-1 text-base placeholder-gray-400 shadow focus:border-black focus:shadow-md focus:outline-none"
-                :value="t.description"
-            />
-            <input
-                type="text"
-                class="blockborder focus:shadow-outline appearance-none rounded border-gray-300 bg-white p-1 text-base placeholder-gray-400 shadow focus:border-black focus:shadow-md focus:outline-none"
-                :value="t.date"
-            />
-        </li>
-    </ul>
 </template>
+
 <script setup>
 import { ref } from "vue";
 import route from "ziggy";
 
-const goTo = () => {
-    if (!dateValue.value) return;
-    console.log(dateValue.value);
-};
 const dateValue = ref("");
 const formatter = ref({
     date: "DD MMM YYYY",
@@ -75,8 +51,6 @@ const formatter = ref({
 });
 
 defineProps({
-    page: String,
     data: Object,
-    test: String,
 });
 </script>

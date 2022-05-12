@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('expense_user', function (Blueprint $table) {
-            $table->foreignId('user_id');
-            $table->foreignId('expense_id');
+        Schema::create('groups', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('owner');
+            $table->string('title')->default('group');
+            $table->string('description');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expense_user');
+        Schema::dropIfExists('groups');
     }
 };

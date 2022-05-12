@@ -9,8 +9,8 @@ class Expense extends Model
 {
     use HasFactory;
 
-    public function users()
+    public function group()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(Group::class);
     }
 }

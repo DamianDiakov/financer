@@ -2,6 +2,8 @@ import { createApp, h } from 'vue'
 import { createInertiaApp, Link } from '@inertiajs/inertia-vue3'
 import Layout from './shared/Layout'
 import LitepieDatepicker from 'litepie-datepicker';
+import { ZiggyVue } from 'ziggy';
+import { Ziggy } from './ziggy';
 
 createInertiaApp({
   resolve: name => {
@@ -15,6 +17,7 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .use(ZiggyVue, Ziggy)
       .use(LitepieDatepicker)
       .component('Link', Link)
       .mount(el)

@@ -42,13 +42,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function comments()
+    public function presets()
     {
         return $this->hasMany(Preset::class);
     }
 
-    public function expenses()
+    public function groups()
     {
-        return $this->belongsToMany(Expense::class);
+        return $this->belongsToMany(Group::class);
     }
 }

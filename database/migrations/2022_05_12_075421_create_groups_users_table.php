@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('expenses', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('group_id');
+        Schema::create('groups_users', function (Blueprint $table) {
             $table->foreignId('user_id');
-            $table->decimal('amount', $precision = 8, $scale = 2);
-            $table->string('description');
-            $table->date('date');
-            $table->timestamps();
+            $table->foreignId('group_id');
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expenses');
+        Schema::dropIfExists('groups_users');
     }
 };

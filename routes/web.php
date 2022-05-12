@@ -29,16 +29,34 @@ Route::get('second', function () {
         'data' => Expense::all()
     ]);
 });
-Route::get('second/date', function (Request $rq) {
-    $date = Carbon::parseFromLocale($rq->date, "bg")->format('Y-m-d');
+
+Route::get('second/test/{date}', function ($date) {
+    $date = Carbon::parseFromLocale($date, "bg")->format('Y-m-d');
+
+    $expenses = Expense::query()
+        ->where('date', $date)
+        ->get();
+
     return Inertia::render('second', [
-        'page' => 'Secon Page',
-        'data' => Expense::all()
+        'page' => 'Secon Page with query',
+        'data' => $expenses
     ]);
-});
+})->name('test');
 
 Route::get('third', function () {
     return Inertia::render('third', [
-        'page' => 'Third page'
+        'page' => 'Third page',
     ]);
 });
+
+Route::get('third/{date}', function ($date) {
+    $date = Carbon::parseFromLocale($date, "bg")->format('Y-m-d');
+
+    $expenses = Expense::query()
+        ->where('date', $date)
+        ->get();
+
+    return Inertia::render('third', [
+        'data' => $expenses,
+    ]);
+})->name('third');
